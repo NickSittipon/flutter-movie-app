@@ -1,23 +1,27 @@
-
 import 'package:another_flushbar/flushbar.dart';
 import 'package:another_flushbar/flushbar_route.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class Utils {
+  static void fieldFocusChange(
+    BuildContext context,
+    FocusNode currentFocus,
+    FocusNode nextFocus,
+  ) {
+    currentFocus.unfocus();
+    FocusScope.of(context).requestFocus(nextFocus);
+  }
 
   static toastMessage(String message) {
     Fluttertoast.showToast(
       msg: message,
-    backgroundColor: Colors.black,
+      backgroundColor: Colors.black,
       textColor: Colors.white,
-    
-    
     );
-
   }
 
-  static void flustBarErrorMessage(BuildContext context, String message) {
+  static void flushBarErrorMessage(BuildContext context, String message) {
     showFlushbar(
       context: context,
       flushbar: Flushbar(
@@ -31,13 +35,8 @@ class Utils {
         backgroundColor: Colors.red,
         reverseAnimationCurve: Curves.easeInOut,
         positionOffset: 20,
-        icon: const Icon(
-          Icons.error,
-          size: 28.0,
-          color: Colors.white,
-        ),
-      )
-        ..show(context),
+        icon: const Icon(Icons.error, size: 28.0, color: Colors.white),
+      )..show(context),
     );
   }
 
