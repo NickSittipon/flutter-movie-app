@@ -4,6 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class Utils {
+  static double averageRating(List<num> ratings) {
+    if (ratings.isEmpty) return 0.0;
+
+    final sum = ratings.fold<num>(0, (p, e) => p + e);
+    return double.parse((sum / ratings.length).toStringAsFixed(1));
+  }
+
   static void fieldFocusChange(
     BuildContext context,
     FocusNode currentFocus,

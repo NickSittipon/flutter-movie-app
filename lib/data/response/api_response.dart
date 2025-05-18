@@ -1,22 +1,26 @@
 import 'package:flutter_mvvm_provider/data/response/status.dart';
 
 class ApiResponse<T> {
-  final Status status;
-  final T? data;
-  final String? message;
 
-  const ApiResponse._({required this.status, this.data, this.message});
+  Status? status ;
+  T? data ;
+  String? message ;
 
-  factory ApiResponse.loading([String? message]) =>
-      ApiResponse._(status: Status.Loading, message: message);
+  ApiResponse(this.status , this.data, this.message);
 
-  factory ApiResponse.completed(T data) =>
-      ApiResponse._(status: Status.Success, data: data);
+  ApiResponse.notStarted() : status = Status.notStarted ;
 
-  factory ApiResponse.error([String? message]) =>
-      ApiResponse._(status: Status.Error, message: message);
+  ApiResponse.loading() : status = Status.Loading ;
+
+  ApiResponse.completed(this.data) : status = Status.Completed ;
+
+  ApiResponse.error(this.message) : status = Status.Error ;
+
 
   @override
-  String toString() =>
-      "Status: $status\nMessage: $message\nData: $data";
+  String toString(){
+    return "Status : $status \n Message : $message \n Data: $data" ;
+  }
+
+
 }

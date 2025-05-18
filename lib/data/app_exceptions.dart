@@ -10,23 +10,20 @@ class AppException implements Exception {
   }
 }
 
-
 class FetchDataException extends AppException {
   FetchDataException([String? message])
-      : super(message: "Error During Communication: ");
+    : super(message: "Error During Communication: ");
 }
 
 class BadRequestException extends AppException {
   BadRequestException([String? message])
-      : super(message: message, prefix: "Invalid Request: ");
+    : super(message: message, prefix: "Invalid Request: ");
 }
 
 class UnauthorisedException extends AppException {
-  UnauthorisedException([String? message])
-      : super(message:  "Unauthorised: ");
+  UnauthorisedException([String? message]) : super(message: "Unauthorised: ");
 }
 
 class InvalidInputException extends AppException {
-  InvalidInputException([String? message])
-      : super(message: "Invalid Input: ");
+  InvalidInputException([String? message]) : super(message: "Invalid Input: ");
 }

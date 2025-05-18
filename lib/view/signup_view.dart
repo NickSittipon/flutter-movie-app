@@ -3,18 +3,17 @@ import 'package:flutter_mvvm_provider/resources/components/round_button.dart';
 import 'package:flutter_mvvm_provider/utilities/routes/routes.dart';
 import 'package:flutter_mvvm_provider/utilities/routes/routes_name.dart';
 import 'package:flutter_mvvm_provider/utilities/utils.dart';
-import 'package:flutter_mvvm_provider/view/home_view.dart';
 import 'package:flutter_mvvm_provider/view_model/auth_view_model.dart';
 import 'package:provider/provider.dart';
 
-class LoginView extends StatefulWidget {
-  const LoginView({super.key});
+class SignUpView extends StatefulWidget {
+  const SignUpView({super.key});
 
   @override
-  State<LoginView> createState() => _LoginViewState();
+  State<SignUpView> createState() => _SignUpViewState();
 }
 
-class _LoginViewState extends State<LoginView> {
+class _SignUpViewState extends State<SignUpView> {
   ValueNotifier<bool> _obsecurePassword = ValueNotifier(true);
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
@@ -41,9 +40,8 @@ class _LoginViewState extends State<LoginView> {
     final height = MediaQuery.of(context).size.height * 1;
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: false,
         title: const Text(
-          'Login',
+          'Signup',
           style: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,
@@ -103,8 +101,8 @@ class _LoginViewState extends State<LoginView> {
             ),
             SizedBox(height: height * 0.1),
             RoundButton(
-              title: 'Login',
-              isLoading: authViewModel.loading,
+              title: 'Signup',
+              isLoading: authViewModel.signupLoading,
               onPress: () {
                 if (_emailController.text.isEmpty) {
                   Utils.flushBarErrorMessage(
@@ -122,16 +120,11 @@ class _LoginViewState extends State<LoginView> {
                     'Password length should be at least 6 characters',
                   );
                 } else {
-                  // Map data = {
-                  //   'email': _emailController.text.toString(),
-                  //   'password': _passwordController.text.toString(),
-                  // };
-
                   Map data = {
-                    'email': 'eve.holt@reqres.in',
-                    'password': 'pistol',
+                    'email': _emailController.text.toString(),
+                    'password': _passwordController.text.toString(),
                   };
-                  authViewModel.loginApi(data, context);
+                  authViewModel.signUpApi(data, context);
                   print('Login Successfully');
                 }
               },
@@ -139,10 +132,11 @@ class _LoginViewState extends State<LoginView> {
             SizedBox(height: height * 0.02),
             InkWell(
               onTap: () {
-                Navigator.pushNamed(context, RoutesName.signup);
+                Navigator.pushNamed(context, RoutesName.login);
               },
+
               child: const Text(
-                'Don\'t have an account? Register',
+                'Already have an account? Login',
                 style: TextStyle(color: Colors.blue, fontSize: 16),
               ),
             ),
