@@ -19,7 +19,7 @@ jobs:
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '<desired-flutter-version>' # เช่น '3.19.5'
+          flutter-version: '3.29.1'
 
       # Install dependencies
       - name: Install dependencies
