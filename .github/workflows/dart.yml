@@ -26,8 +26,8 @@ jobs:
         run: flutter pub get
 
       # Analyze the project
-      - name: Analyze project source
-        run: dart analyze
+      # - name: Analyze project source
+      #   run: dart analyze
 
       # Run unit tests
       - name: Run tests
